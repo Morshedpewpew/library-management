@@ -8,9 +8,15 @@ import { UpdateUserDto } from "./dto/user-update.dto";
 @Controller('user')
 export class UserController {
     constructor(private userService: UserService){}
+    @Get(':ID')
+     getUser(@Param('ID',ParseIntPipe) ID: number){
+       return this.userService.show(ID);
+     }
+     
     @Get()
     getUsers() {
       return this.userService.get();
+     
     }
     @Post()
     store(@Body() createUserDto: CreateUserDto){
@@ -23,14 +29,7 @@ export class UserController {
       //console.log(req.body);
       return this.userService.update(updateUserDto,ID);
     }
-     @Get(':ID')
-     getUser(@Param('ID',ParseIntPipe) ID: number){
-       return this.userService.show(ID);
-     }
-     @Get('Book')
-     getBook(@Param('Book',ParseIntPipe) Book: string){
-       return this.userService.BookShow(Book);
-     }
+     
     @Delete(':ID')
     deleteUser(@Param('ID',ParseIntPipe) ID: number){
         return this.userService.delete(ID);

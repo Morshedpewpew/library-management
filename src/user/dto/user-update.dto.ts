@@ -7,5 +7,5 @@ export class UpdateUserDto{
     @IsEmail()
     email: string;
     @IsString()
-    Book : string;
+    books : string;
 }

@@ -4,10 +4,10 @@ import { Request } from 'express';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/user-create.dto';
 import { UpdateUserDto } from './dto/user-update.dto';
-import { User } from './Entity/user.entity';
+import { User } from './entities/user.entity';
 
 @Injectable()
-export class UserService {
+export class UserService  {
   constructor(
   @InjectRepository(User)
   private userRepository: Repository<User>,){}
@@ -23,9 +23,7 @@ export class UserService {
       show(ID: number){
         return this.userRepository.findOne({where: {ID}});
       }
-      BookShow(Book: string){
-        return this.userRepository.findOne({where: {Book}});
-      }
+      
         
 
 
