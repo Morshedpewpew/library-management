@@ -6,6 +6,6 @@ export class CreateUserDto{
     @IsEmail()
     email: string;
     @IsString()
-    books : string;
+    location : string;
 
 }
