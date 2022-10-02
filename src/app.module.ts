@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { typeOrmConfig } from './config/typeorm.config';
+import { typeOrmAsyncConfig, typeOrmConfig } from './config/typeorm.config';
 import { User } from './user/entities/user.entity';
 
 //import { AppService } from './app.service';
@@ -16,7 +16,7 @@ import { PublisherModule } from './publisher/publisher.module';
   controllers: [AppController],
   
   imports: [UserModule,
-    TypeOrmModule.forRootAsync(typeOrmConfig),
+    TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
     BookModule,
     AuthorModule,
     CategoryModule,
