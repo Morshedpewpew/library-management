@@ -19,8 +19,8 @@ export class CategoryService {
             update(updateCategoryDto: UpdateCategoryDto,ID: number){
               return this.categoryRepository.update(ID,updateCategoryDto);
             }
-            show(ID: number){
-              return this.categoryRepository.findOne({where: {ID}});
+            getOne(ID: number){
+              return this.categoryRepository.findOne({where: {ID}, relations:["books"] });
             }
             
               

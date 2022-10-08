@@ -1,19 +1,20 @@
 import { Controller } from '@nestjs/common';
 import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from "@nestjs/common";
+import { BookService } from 'src/book/book.service';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/category-create.dto';
 import { UpdateCategoryDto } from './dto/category-update.dto';
 
 @Controller('category')
 export class CategoryController {
-    constructor(private categoryService: CategoryService){}
+    constructor( private categoryService: CategoryService){}
     @Get(':ID')
-     getUser(@Param('ID',ParseIntPipe) ID: number){
-       return this.categoryService.show(ID);
+     get(@Param('ID',ParseIntPipe) ID: number){
+       return this.categoryService.getOne(ID);
      }
      
     @Get()
-    getUsers() {
+    getCategory() {
       return this.categoryService.get();
      
     }
@@ -30,7 +31,7 @@ export class CategoryController {
     }
      
     @Delete(':ID')
-    deleteUser(@Param('ID',ParseIntPipe) ID: number){
+    deleteCategory(@Param('ID',ParseIntPipe) ID: number){
         return this.categoryService.delete(ID);
     }
 
