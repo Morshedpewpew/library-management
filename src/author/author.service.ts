@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from 'src/book/entity/book.entity';
+import { Publisher } from 'src/publisher/entity/publisher.entity';
 import { Repository } from 'typeorm';
 import { CreateAuthorDto } from './dto/author-create.dto';
 import { UpdateAuthorDto } from './dto/author-update.dto';
@@ -18,11 +19,13 @@ export class AuthorService {
                 }
               );
             }
-            create(createAuthorDto: CreateAuthorDto, books: Book){
+            create(createAuthorDto: CreateAuthorDto, books: Book,publishers: Publisher){
               createAuthorDto['books'] = [books];
+              createAuthorDto['publishers'] = [publishers];
               delete createAuthorDto.book_id;
+              delete createAuthorDto.publisher_id;
               console.log(createAuthorDto);
-              
+               
               return this.authorRepository.save(createAuthorDto);
             }
             update(updateAuthorDto: UpdateAuthorDto,ID: number){

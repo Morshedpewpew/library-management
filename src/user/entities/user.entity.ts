@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "src/category/entity/category.entity";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('user')
 export class User extends BaseEntity{
@@ -11,7 +12,9 @@ export class User extends BaseEntity{
     location: string;
     @Column()
     email: string;
-    
+    @ManyToMany(()=>Category, (category)=>category.users) 
+    @JoinTable()
+    categories:Category[] 
     
 
 }

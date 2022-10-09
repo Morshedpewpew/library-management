@@ -4,10 +4,11 @@ import { Controller } from '@nestjs/common';
 import { UserService } from "./user.service";
 import { CreateUserDto } from "./dto/user-create.dto";
 import { UpdateUserDto } from "./dto/user-update.dto";
+import { CategoryService } from "src/category/category.service";
 
 @Controller('user')
 export class UserController {
-    constructor(private userService: UserService){}
+    constructor(private userService: UserService, private categoryService: CategoryService){}
     @Get(':ID')
      getUser(@Param('ID',ParseIntPipe) ID: number){
        return this.userService.show(ID);
@@ -19,9 +20,10 @@ export class UserController {
      
     }
     @Post()
-    store(@Body() createUserDto: CreateUserDto){
+    async store(@Body() createUserDto: CreateUserDto){
       //console.log(req.body);
-      return this.userService.create(createUserDto);
+      const categories = await this.categoryService.getOne(createUserDto.category_id)
+      return this.userService.create(createUserDto,categories);
     }
     @Patch(':ID')
     update(@Body() updateUserDto: UpdateUserDto,

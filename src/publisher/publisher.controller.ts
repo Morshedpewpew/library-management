@@ -1,12 +1,13 @@
 import { Controller } from '@nestjs/common';
 import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from "@nestjs/common";
+import { AuthorService } from 'src/author/author.service';
 import { CreatePublisherDto } from './dto/publisher-create.dto';
 import { UpdatePublisherDto } from './dto/publisher-update.dto';
 import { PublisherService } from './publisher.service';
 
 @Controller('publisher')
 export class PublisherController {
-    constructor(private publisherService: PublisherService){}
+    constructor(private publisherService: PublisherService ){}
     @Get(':ID')
      getPublisher(@Param('ID',ParseIntPipe) ID: number){
        return this.publisherService.show(ID);
@@ -33,5 +34,5 @@ export class PublisherController {
     deletePublisher(@Param('ID',ParseIntPipe) ID: number){
         return this.publisherService.delete(ID);
     }
-
+ 
 }

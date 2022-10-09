@@ -1,5 +1,6 @@
 import { Book } from "src/book/entity/book.entity";
-import { BaseEntity, Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Publisher } from "src/publisher/entity/publisher.entity";
+import { BaseEntity, Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('author')
 export class Author extends BaseEntity{
@@ -10,8 +11,11 @@ export class Author extends BaseEntity{
     @Column()
     email: string;
     @ManyToMany(()=>Book, (book)=>book.authors) 
-    books:Book[]   
+    books:Book[] 
+    @ManyToMany(()=> Publisher, (publisher)=>publisher.authors)
+    @JoinTable()
+    publishers : Publisher[]  
     
-    
+     
 
 }

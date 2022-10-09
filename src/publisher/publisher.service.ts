@@ -10,8 +10,12 @@ export class PublisherService {
     constructor(
         @InjectRepository(Publisher)
         private publisherRepository: Repository<Publisher>,){}
-          get():Promise<Publisher[]> {
-              return this.publisherRepository.find();
+          get(){
+              return this.publisherRepository.find(
+                {
+                  relations :['authors']
+                }
+              );
             }
             create(createPublisherDto: CreatePublisherDto){
               return this.publisherRepository.save(createPublisherDto);
@@ -20,9 +24,9 @@ export class PublisherService {
               return this.publisherRepository.update(ID,updatePublisherDto);
             }
             show(ID: number){
-              return this.publisherRepository.findOne({where: {ID}});
+              return this.publisherRepository.findOne({where: {ID}, relations:["books",'authors']});
             }
-            
+             
             
             delete(ID: number){
               return this.publisherRepository.delete(ID);

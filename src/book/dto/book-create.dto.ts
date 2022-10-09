@@ -8,6 +8,8 @@ export class CreateBookDto{
     @Transform(({value}) => parseInt(value))
     @IsInt()
     category_id : number;
-    
+    @IsInt()
+    publisher_id : number;
+     
 
 }

@@ -1,9 +1,13 @@
-import { IsString, IsEmail } from "class-validator";
+import { Transform } from "class-transformer";
+import { IsString, IsEmail, IsInt } from "class-validator";
 
 export class UpdatePublisherDto{
     @IsString()
     name : string;
     @IsEmail()
     email: string;
+   // @Transform(({value}) => parseInt(value))
+   // @IsInt()
+  //  author_id : number;
    
 }
