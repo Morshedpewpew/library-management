@@ -11,8 +11,8 @@ export class CreateAuthorDto{
     @Transform(({value}) => parseInt(value))
     @IsInt()
     book_id : number;
-    @IsInt()
-    publisher_id : number;
+    //@IsInt()
+    //publisher_id : number;
    
     
     

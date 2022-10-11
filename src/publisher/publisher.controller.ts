@@ -12,6 +12,10 @@ export class PublisherController {
      getPublisher(@Param('ID',ParseIntPipe) ID: number){
        return this.publisherService.show(ID);
      }
+     @Get('authors/:ID')
+     getPublisherAuthor(@Param('ID',ParseIntPipe) ID: number){
+       return this.publisherService.showPublisherAuthor(ID);
+     }
      
     @Get()
     getPublishers() {

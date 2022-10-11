@@ -19,11 +19,11 @@ export class AuthorService {
                 }
               );
             }
-            create(createAuthorDto: CreateAuthorDto, books: Book,publishers: Publisher){
+            create(createAuthorDto: CreateAuthorDto, books: Book){
               createAuthorDto['books'] = [books];
-              createAuthorDto['publishers'] = [publishers];
+             // createAuthorDto['publishers'] = [publishers];
               delete createAuthorDto.book_id;
-              delete createAuthorDto.publisher_id;
+              //delete createAuthorDto.publisher_id;
               console.log(createAuthorDto);
                
               return this.authorRepository.save(createAuthorDto);

@@ -14,10 +14,7 @@ export class UserService  {
   private userRepository: Repository<User>,){}
     async get() {
         return this.userRepository.find(
-          {
-            relations: ['categories']
-      
-          }
+         
         );
       }
       create(createUserDto: CreateUserDto, categories :Category){

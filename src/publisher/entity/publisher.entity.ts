@@ -12,8 +12,6 @@ export class Publisher extends BaseEntity{
     email: string;
     @OneToMany(()=> Book,(book)=>book.publisher)
     books: Book[]
-    @ManyToMany(()=>Author, (author)=>author.publishers) 
-    authors:Author[] 
-    
+   
 
 }

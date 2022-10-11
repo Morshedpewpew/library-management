@@ -12,9 +12,7 @@ export class PublisherService {
         private publisherRepository: Repository<Publisher>,){}
           get(){
               return this.publisherRepository.find(
-                {
-                  relations :['authors']
-                }
+               
               );
             }
             create(createPublisherDto: CreatePublisherDto){
@@ -24,7 +22,10 @@ export class PublisherService {
               return this.publisherRepository.update(ID,updatePublisherDto);
             }
             show(ID: number){
-              return this.publisherRepository.findOne({where: {ID}, relations:["books",'authors']});
+              return this.publisherRepository.findOne({where: {ID} });
+            }
+            showPublisherAuthor(ID: number){
+              return this.publisherRepository.findOne({where: {ID}, relations:["books","books.authors"]});
             }
              
             

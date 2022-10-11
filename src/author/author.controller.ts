@@ -8,7 +8,7 @@ import { UpdateAuthorDto } from './dto/author-update.dto';
 
 @Controller('author')
 export class AuthorController {
-    constructor(private bookService: BookService,private authorService: AuthorService, private publisherService: PublisherService){}
+    constructor(private bookService: BookService,private authorService: AuthorService){}
     @Get(':ID')
      getAuthor(@Param('ID',ParseIntPipe) ID: number){
        return this.authorService.show(ID);
@@ -23,10 +23,10 @@ export class AuthorController {
     async store(@Body() createAuthorDto: CreateAuthorDto){
       //console.log(createAuthorDto);
       const books = await this.bookService.show(createAuthorDto.book_id)
-      const publishers = await this.publisherService.show(createAuthorDto.publisher_id)
+      //const publishers = await this.publisherService.show(createAuthorDto.publisher_id)
       
       
-      return this.authorService.create(createAuthorDto,books,publishers);
+      return this.authorService.create(createAuthorDto,books);
     }
     @Patch(':ID')
     update(@Body() updateAuthorDto: UpdateAuthorDto,

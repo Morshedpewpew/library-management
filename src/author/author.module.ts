@@ -9,7 +9,7 @@ import { PublisherModule } from 'src/publisher/publisher.module';
 @Module({
   controllers: [AuthorController],
   providers: [AuthorService],
-  imports:[TypeOrmModule.forFeature([Author]),BookModule, PublisherModule],
+  imports:[TypeOrmModule.forFeature([Author]),BookModule],
   exports: [AuthorService,AuthorModule],
 })
 export class AuthorModule {}

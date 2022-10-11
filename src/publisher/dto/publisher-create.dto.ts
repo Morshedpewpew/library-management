@@ -6,8 +6,8 @@ export class CreatePublisherDto{
     name : string;
     @IsEmail()
     email: string;
-    @Transform(({value}) => parseInt(value))
-    @IsInt()
-    author_id : number;
+   // @Transform(({value}) => parseInt(value))
+   // @IsInt()
+   // author_id : number;
    
 }

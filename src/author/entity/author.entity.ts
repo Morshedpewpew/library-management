@@ -12,10 +12,7 @@ export class Author extends BaseEntity{
     email: string;
     @ManyToMany(()=>Book, (book)=>book.authors) 
     books:Book[] 
-    @ManyToMany(()=> Publisher, (publisher)=>publisher.authors)
-    @JoinTable()
-    publishers : Publisher[]  
-    
+   
      
 
 }
