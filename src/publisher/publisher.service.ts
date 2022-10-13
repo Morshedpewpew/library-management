@@ -25,7 +25,7 @@ export class PublisherService {
               return this.publisherRepository.findOne({where: {ID} });
             }
             showPublisherAuthor(ID: number){
-              return this.publisherRepository.findOne({where: {ID}, relations:["books","books.authors"]});
+              return this.publisherRepository.findOne({where: {ID}, relations:['books',"books.authors"]});
             }
              
             

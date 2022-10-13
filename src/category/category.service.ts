@@ -20,7 +20,7 @@ export class CategoryService {
               return this.categoryRepository.update(ID,updateCategoryDto);
             }
             getOne(ID: number){
-              return this.categoryRepository.findOne({where: {ID}, relations:["books"] });
+              return this.categoryRepository.findOne({where: {ID} });
             }
             
               

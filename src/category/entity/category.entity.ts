@@ -10,7 +10,7 @@ export class Category extends BaseEntity{
     name: string; 
     @OneToMany(()=> Book,(book)=>book.category)
     books: Book[]
-    @ManyToMany(()=>User, (user)=>user.categories) 
+    @ManyToMany(()=>User, (user)=>user.categories,{onUpdate:'CASCADE'}) 
     users: User[] 
    
     

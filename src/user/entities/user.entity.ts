@@ -12,7 +12,7 @@ export class User extends BaseEntity{
     location: string;
     @Column()
     email: string;
-    @ManyToMany(()=>Category, (category)=>category.users) 
+    @ManyToMany(()=>Category, (category)=>category.users,{cascade:true,onUpdate:'CASCADE'}) 
     @JoinTable()
     categories:Category[] 
     
