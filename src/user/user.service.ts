@@ -28,7 +28,7 @@ export class UserService  {
         return this.userRepository.update(ID,updateUserDto);
       }
       async updateCat(categoryAddDto: CategoryAddDto, ID: number, newCategoryList:Category[]){
-        const library= (await this.show(ID))
+        const library= await this.show(ID)
         //const newCategoryList = (await.getOne(ID)).categories
         
         //console.log(ID);

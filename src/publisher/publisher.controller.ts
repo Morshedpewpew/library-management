@@ -7,7 +7,7 @@ import { PublisherService } from './publisher.service';
 
 @Controller('publisher')
 export class PublisherController {
-    constructor(private publisherService: PublisherService ){}
+    constructor(private publisherService: PublisherService, ){}
     @Get(':ID')
      getPublisher(@Param('ID',ParseIntPipe) ID: number){
        return this.publisherService.show(ID);

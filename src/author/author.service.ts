@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from 'src/book/entity/book.entity';
 import { Publisher } from 'src/publisher/entity/publisher.entity';
@@ -19,14 +19,19 @@ export class AuthorService {
                 }
               );
             }
-            create(createAuthorDto: CreateAuthorDto, books: Book){
+            async create(createAuthorDto: CreateAuthorDto, books: Book){
               createAuthorDto['books'] = [books];
              // createAuthorDto['publishers'] = [publishers];
               delete createAuthorDto.book_id;
               //delete createAuthorDto.publisher_id;
-              console.log(createAuthorDto);
+              //console.log(createAuthorDto);
+              try{
                
-              return this.authorRepository.save(createAuthorDto);
+              return await this.authorRepository.save(createAuthorDto);
+              } catch(e){
+                
+                  return (e.message);
+              }
             }
             update(updateAuthorDto: UpdateAuthorDto,ID: number){
               return this.authorRepository.update(ID,updateAuthorDto);

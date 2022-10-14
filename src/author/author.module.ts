@@ -10,6 +10,6 @@ import { PublisherModule } from 'src/publisher/publisher.module';
   controllers: [AuthorController],
   providers: [AuthorService],
   imports:[TypeOrmModule.forFeature([Author]),BookModule],
-  exports: [AuthorService,AuthorModule],
+  exports: [AuthorService],
 })
 export class AuthorModule {}
