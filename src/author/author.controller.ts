@@ -13,6 +13,10 @@ export class AuthorController {
      getAuthor(@Param('ID',ParseIntPipe) ID: number){
        return this.authorService.show(ID);
      }
+     @Get(':ID/forPublisher')
+     getAuthorPub(@Param('ID',ParseIntPipe) ID: number){
+       return this.authorService.showAuthOnly(ID);
+     }
       
     @Get()
     getAuthors() {

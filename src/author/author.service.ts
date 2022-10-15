@@ -39,6 +39,10 @@ export class AuthorService {
             show(ID: number){
               return this.authorRepository.findOne({where: {ID},relations:['books']});
             }
+            showAuthOnly(ID: number){
+              return this.authorRepository.findOne({where: {ID}});
+            }
+            
             
               
       

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { PublisherController } from './publisher.controller';
 import { PublisherService } from './publisher.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,7 +10,7 @@ import { BookModule } from 'src/book/book.module';
 @Module({
   controllers: [PublisherController],
   providers: [PublisherService],
-  imports:[TypeOrmModule.forFeature([Publisher])],
+  imports:[TypeOrmModule.forFeature([Publisher]),forwardRef(() => AuthorModule)],
  exports: [PublisherService,PublisherModule],
 })
 export class PublisherModule {}

@@ -10,7 +10,7 @@ import { Publisher } from './entity/publisher.entity';
 export class PublisherService {
     constructor(
       // @Inject(forwardRef(()=> AuthorService))
-      // private authorService: AuthorService, 
+       private authorService: AuthorService, 
         @InjectRepository(Publisher)
         private publisherRepository: Repository<Publisher>,){}
           get(){
@@ -40,9 +40,21 @@ export class PublisherService {
                 .leftJoin('books.authors','authors')
                 .andWhere('publishers.ID = :id',{id:ID})
                 .getRawMany()
-              console.log(authorList)
-              return authorList
-              //const authService= return this.authorRepository.findOne({where: {authors_ID} });
+              //console.log(authorList[2].authors_ID)
+
+             console.log(authorList)
+              const auth=[];
+              for(let i = 0; i<authorList.length;i++){
+                //console.log(authorList.length)
+                 auth[i]=  await this.authorService.showAuthOnly(authorList[i].authors_ID);
+
+            
+              }
+              return auth
+              //}
+              
+              
+
 
               
                 
