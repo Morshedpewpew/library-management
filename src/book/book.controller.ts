@@ -1,7 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, HttpStatus, NotAcceptableException, UseFilters } from '@nestjs/common';
 import { Body, Delete, Get, Param, ParseIntPipe, Patch, Post, Req } from "@nestjs/common";
 import { CategoryService } from 'src/category/category.service';
 import { PublisherService } from 'src/publisher/publisher.service';
+import { FindRelationsNotFoundError } from 'typeorm';
+import { AllException } from '../exception/all-exception-handle';
+import { GlobalExceptionFilter } from '../exception/typeorm.exception';
 import { BookService } from "./book.service";
 import { CreateBookDto } from './dto/book-create.dto';
 import { UpdateBookDto } from './dto/book-update.dto';
@@ -14,12 +17,15 @@ export class BookController {
      getBook(@Param('ID',ParseIntPipe) ID: number){
        return this.bookService.show(ID);
      }
-     
+    @UseFilters(GlobalExceptionFilter)
     @Get()
     getBooks() {
+        
       return this.bookService.get();
+      
      
     }
+    @UseFilters(GlobalExceptionFilter)
     @Post()
     async store(@Body() createBookDto: CreateBookDto){
       

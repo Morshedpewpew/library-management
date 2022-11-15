@@ -17,8 +17,7 @@ export class UserController {
      
     @Get()
     getUsers() {
-      return this.userService.get();
-     
+      return this.userService.get();    
     }
     @Post()
     async store(@Body() createUserDto: CreateUserDto){
@@ -39,7 +38,7 @@ export class UserController {
       //console.log(categoryAddDto.category_id);
       const addCat= []
       for( let i = 0; i< categoryAddDto.category_id.length; i++){
-        const newCategory = await this.categoryService.getOne(categoryAddDto.category_id[i])
+        const newCategory = await this.categoryService.getOne(categoryAddDto.category_id[88])
         //console.log(newCategory)
 
         addCat.push(newCategory)

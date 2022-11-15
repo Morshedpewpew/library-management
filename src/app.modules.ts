@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
+import { AppController } from './app.controllers';
 import { typeOrmAsyncConfig, typeOrmConfig } from './config/typeorm.config';
-import { User } from './user/entities/user.entity';
+//import { User } from './user/entities/user.entity';
 
 //import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
@@ -21,6 +21,7 @@ import { PublisherModule } from './publisher/publisher.module';
     AuthorModule,
     CategoryModule,
     PublisherModule,
+    
   ],
   //providers: [AppService],
 })

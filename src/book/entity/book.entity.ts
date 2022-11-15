@@ -7,7 +7,7 @@ import { BaseEntity, Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGe
 export class Book extends BaseEntity{
     @PrimaryGeneratedColumn()
     ID:number;
-    @Column()
+    @Column({unique:true})
     name: string;
     @ManyToOne(()=> Category, (category)=> category.books)
     category: Category
